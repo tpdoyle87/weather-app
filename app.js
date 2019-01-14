@@ -21,7 +21,13 @@ const argv = yargs
     if (errorMessage) {
       console.log(errorMessage)
     } else {
-      weather.fetchWeather(results)
+      weather.fetchWeather(results, (errorMessage, weatherResults) => {
+        if (errorMessage) {
+          console.log(errorMessage)
+        } else {
+          console.log(`Currently it's ${weatherResults.temperature} degrees, but it feels like ${weatherResults.actualTemp} in ${results.Address}`)
+        }
+      })
     };
   })
 
